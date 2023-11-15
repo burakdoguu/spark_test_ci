@@ -9,7 +9,7 @@ jobs:
               uses: actions/checkout@v4
             
             - name: Docker Compose UP
-              uses: |
+              run: |
                 docker-compose up -d --force-recreate --remove-orphans
                 sleep 6
                 docker logs spark_master
