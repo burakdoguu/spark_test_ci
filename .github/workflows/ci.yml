@@ -1,0 +1,21 @@
+name: Spark Test
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v4
+            
+            - name: Docker Compose UP
+              uses: |
+                docker compose up -d
+                sleep 6
+                docker logs spark_master
+            
+#            - name: Spark Submit
+#              uses: docker exec spark-submit --master 
+
+        
+          
