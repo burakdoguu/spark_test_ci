@@ -10,7 +10,7 @@ jobs:
             
             - name: Docker Compose UP
               uses: |
-                docker compose up -d
+                docker-compose up -d --force-recreate --remove-orphans
                 sleep 6
                 docker logs spark_master
             
