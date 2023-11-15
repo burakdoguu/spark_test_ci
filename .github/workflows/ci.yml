@@ -14,8 +14,8 @@ jobs:
                 sleep 6
                 docker logs spark_master
             
-#            - name: Spark Submit
-#              uses: docker exec spark-submit --master 
+            - name: Spark Submit
+              run: docker exec spark-submit --master spark://spark:7077 --jars org.postgresql:postgresql:42.6.0 /app/spark_job.py
 
         
           
