@@ -16,7 +16,10 @@ jobs:
                 docker ps
             
             - name: Spark Submit
-              run: docker exec spark_master spark-submit --master spark://spark:7077 --packages org.postgresql:postgresql:42.6.0 /app/spark_job.py
+              run: |
+                sudo docker exec -u 0 spark_master chmod -R 777 app
+                sudo docker exec -u 0 spark_master ls -la
+                docker exec spark_master spark-submit --master spark://spark:7077 --packages org.postgresql:postgresql:42.6.0 ./app/spark_job.py
 
         
           
