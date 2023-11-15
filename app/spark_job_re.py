@@ -47,8 +47,7 @@ class BatchProcess:
             .option("url", "jdbc:postgresql://postgres:5432/postgres") \
             .option("dbtable", "InvoicesTable") \
             .option("user", "postgres")\
-            .option("password", "postgres")\
-            .save()
+            .option("password", "postgres")
         
         return write_final_df
 
