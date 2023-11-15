@@ -30,7 +30,7 @@ def spark_process():
                                    "StoreID", "PaymentMethod", "City")
     
     query_df.write.format("jdbc") \
-        .option("url", "jdbc:postgresql://localhost:5432/postgres") \
+        .option("url", "jdbc:postgresql://postgres:5432/postgres") \
         .option("dbtable", "InvoicesTable") \
         .option("user", "postgres")\
         .option("password", "postgres")\
