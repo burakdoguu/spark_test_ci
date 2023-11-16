@@ -16,7 +16,7 @@ jobs:
                 docker ps
 
             - name: Install Packages
-              run: docker exec -u 0 spark_master pip install pytest
+              run: docker exec -u 0 spark_master pip install pytest py4j pandas
             
             - name: Test Pytest
               run: docker exec -u 0 spark_master pytest -v -W ignore ./test/test_spark_job.py
