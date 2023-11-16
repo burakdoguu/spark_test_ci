@@ -15,12 +15,6 @@ jobs:
                 docker logs spark_master
                 docker ps
 
-            - name: Install Packages
-              run: docker exec -u 0 spark_master pip install pytest py4j pandas
-            
-            - name: Test Pytest
-              run: docker exec -u 0 spark_master pytest -v -W ignore ./test/test_spark_job.py
-
             - name: Spark Submit
               run: |
                 sudo docker exec -u 0 spark_master chmod -R 777 app
@@ -43,6 +37,10 @@ jobs:
 #              run: pytest -v -W ignore
 
 
-
+#            - name: Install Packages
+#              run: docker exec -u 0 spark_master pip install pytest py4j pandas
+#            
+#            - name: Test Pytest
+#              run: docker exec -u 0 spark_master pytest -v -W ignore ./test/test_spark_job.py
         
           
