@@ -2,7 +2,7 @@ import pytest
 from pyspark.sql import SparkSession
 import sys
 
-from app import spark_job_re
+from spark_job_re import BatchProcess
 
 @pytest.fixture(scope='session')
 def spark_session():
@@ -14,7 +14,8 @@ def spark_session():
     return spark    
 
 def test_column_count(spark_session):
-    check_df = spark_job_re.BatchProcess.create_query_df()
+    check_df = BatchProcess().create_query_df()
     expected_df = len(check_df.columns)
 
     assert expected_df == 9
+
