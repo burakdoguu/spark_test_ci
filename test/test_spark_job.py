@@ -1,23 +1,17 @@
 import pytest
 from pyspark.sql import SparkSession
-import sys
 
 from app.spark_job_re import BatchProcess
 
-@pytest.fixture(scope='session')
-def spark_session():
-    spark = SparkSession \
-            .builder \
-            .appName("Spark Unit Test") \
-            .master("spark://spark:7077") \
-            .getOrCreate() 
-    return spark    
-
-def test_column_count(spark_session):
-    check_df = BatchProcess().create_query_df()
-    expected_df = len(check_df.columns)
-
-    assert expected_df == 9
+def test_number_of_columns_before_write_process():
+    btch = BatchProcess()
+    spark = btch.spark_process()
+    df = btch.readData(spark=spark)
+    flattened = btch.explode_to_flattened(df)
+    query = btch.create_query_df(flattened=flattened)
+    
+    # Assert the number of columns before the write process
+    assert len(query.columns) == 9
 
 
 
